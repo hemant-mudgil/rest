@@ -1,0 +1,36 @@
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        // Function to handle form submission
+        jQuery('#submitForm').on('click', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            var formData = {
+                username: jQuery('#username').val(),
+                password: jQuery('#password').val()
+            };
+
+            // Perform AJAX POST request
+            jQuery.ajax({
+                type: 'POST',
+                url: 'your_api_endpoint.php',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    // Handle successful response
+                    if (response.status === 'success') {
+                        alert('Success: ' + response.message);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle AJAX errors
+                    console.error(xhr.responseText);
+                    alert('AJAX Error: ' + error);
+                }
+            });
+        });
+    });
+</script>
